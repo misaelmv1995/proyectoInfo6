@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a class="btn btn-success mt-3 mb-4" href="{{route('estudio.create')}}">Crear</a>
+<a class="btn btn-success mt-3 mb-4" href="{{route('estudios.create')}}">Crear</a>
 
 <table class="table table-hover">
     <thead>
@@ -22,8 +22,8 @@
                 <td>{{$estudio->created_at->format('d-m-y')}}</td>
                 <td>{{$estudio->updated_at}}</td>
                 <td>
-                  <a class="btn btn-primary" href="{{route('estudio.show', $estudio->id)}}">Ver</a>
-                  <a class="btn btn-primary" href="{{route('estudio.edit', $estudio->id)}}">Editar</a>
+                  <a class="btn btn-primary" href="{{route('estudios.show', $estudio->id)}}">Ver</a>
+                  <a class="btn btn-primary" href="{{route('estudios.edit', $estudio->id)}}">Editar</a>
                 </td>
                 <td>
                   <button data-toggle="modal" data-target="#deleteModal" data-id="{{$estudio->id}}" class="btn btn-danger" type="submit">Eliminar</button>
@@ -49,7 +49,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form id="formDelete" action="{{route('estudio.destroy', $estudio->id)}}" method="POST">
+          <form id="formDelete" action="{{route('estudios.destroy', 0)}}" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" type="submit">Eliminar</button>

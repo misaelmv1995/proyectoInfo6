@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estudios extends Model
 {
-    use HasFactory;
+    protected $fillable = ['tipo', 'fecha_estudio', 'asistencia', 'fecha_entrega', 'fecha_proximo_estudio', 'fecha_revision_estudio', 'resultado'];
 }

@@ -2,8 +2,8 @@
 
 @section('content')
     
-        <form action="{{route('category.store')}}" method="POST">
-            @include('dashboard.category._form')
+        <form action="{{route('estudios.store')}}" method="POST">
+            @include('dashboard.estudios._form')
         </form>
 
         <form action="" method="post" enctype=“multipart/form-data”>

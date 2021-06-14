@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Estudios;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEstudiosPost;
 
 class EstudiosController extends Controller
 {
@@ -11,10 +13,17 @@ class EstudiosController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     * 
+     *     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        //
+        $estudios = Estudios::orderBy('created_at', 'desc')->paginate(10);
+        return view('dashboard.estudios.index', ['estudios' => $estudios]);  
     }
 
     /**
@@ -24,7 +33,7 @@ class EstudiosController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.estudios.post', ['estudio' => new Estudios()]);
     }
 
     /**
@@ -33,9 +42,10 @@ class EstudiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEstudiosPost $request)
     {
-        //
+        Estudio::create($request->validated());
+        return back()->with('status', 'Estudio creado correctamente');
     }
 
     /**
@@ -46,7 +56,8 @@ class EstudiosController extends Controller
      */
     public function show($id)
     {
-        //
+        $estudio = Estudios::findOrFail($id);
+        return view('dashboard.estudios.show', ['estudio' => $estudio]);
     }
 
     /**
@@ -57,7 +68,7 @@ class EstudiosController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('dashboard.estudios.edit', ['estudio' => $estudio]);
     }
 
     /**
@@ -67,9 +78,10 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEstudiosPost $request, Estudio $estudio)
     {
-        //
+        $estudio->update($request->validated());
+        return back()->with('status', 'Estudios actualizado correctamente');
     }
 
     /**
@@ -78,8 +90,9 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Estudio $estudio)
     {
-        //
+        $estudio->delete();
+        return back()->with('status', 'Estudio borrado correctamente');
     }
 }

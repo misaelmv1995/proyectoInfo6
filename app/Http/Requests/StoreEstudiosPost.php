@@ -13,7 +13,7 @@ class StoreEstudiosPost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,11 +26,11 @@ class StoreEstudiosPost extends FormRequest
         return [
             'tipo' => 'required | min:5 | max:500',
             'fecha_estudio' => 'required | min:5 | max:400',
-            'asistencia' => 
+            /**'asistencia'  
             'fecha_entrega'
             'fecha_proximo_estudio'
             'fecha_revision_estudio'
-            'resultado'
+            'resultado' */
         ];
     }
 }

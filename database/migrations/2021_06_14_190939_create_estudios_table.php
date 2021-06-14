@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstudiosMigration extends Migration
+class CreateEstudiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEstudiosMigration extends Migration
      */
     public function up()
     {
-        Schema::create('estudios_migration', function (Blueprint $table) {
+        Schema::create('estudios', function (Blueprint $table) {
             $table->id();
             $table->string('tipo', 500);
             $table->date('fecha_estudio');
@@ -21,7 +21,7 @@ class CreateEstudiosMigration extends Migration
             $table->date('fecha_entrega');
             $table->date('fecha_proximo_estudio');
             $table->date('fecha_revision_estudio');
-            $table->blob('resultado');
+            $table->binary('resultado');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateEstudiosMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estudios_migration');
+        Schema::dropIfExists('estudios');
     }
 }

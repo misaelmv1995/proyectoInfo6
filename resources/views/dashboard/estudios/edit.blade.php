@@ -2,9 +2,8 @@
 
 @section('content')
     
-        @include('dashboard/partials/validation-errors') 
-        <form action="{{route('category.update', $category->id)}}" method="POST">
+        <form action="{{route('estudios.update', $estudio->id)}}" method="POST">
             @method('PUT')
-            @include('dashboard.category._form')
+            @include('dashboard.estudios._form')
         </form>
 @endsection      
