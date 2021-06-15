@@ -33,9 +33,9 @@
     <label for="fecha_revision_estudio">Fecha de revision:</label>
     <input type="date"  id="fecha_revision_estudio" name="fecha_revision_estudio" value="{{ old('fecha_revision_estudio',$estudio->fecha_revision_estudio)}}">
 </div>
-<div class="form-group" enctype="multipart/form-data" files="true">
+<div class="form-group">
     <label for="resultado">Elegir archivo:</label>
-    <input type="file" class="@error('resultado') is-invalid @enderror" id="resultado" name="resultado" value="{{ old('resultado',$estudio->resultado)}}    ">
+    <input type="file" class="file @error('resultado') is-invalid @enderror" id="resultado" name="resultado" value="{{ old('resultado',$estudio->resultado)}}    ">
 </div>
 @error('resultado')
     <div class="alert alert-danger">{{ $message }}</div>

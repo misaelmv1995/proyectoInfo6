@@ -78,16 +78,13 @@
         // Button that triggered the modal
         var button = $(event.relatedTarget);
         var id = button.data('id');
-
         action = $('#formDelete').attr('data-action').slice(0, -1);;
         action += id;
-
         $('#formDelete').attr('action', action);
-
         var modal = $(this);
         modal.find('.modal-title').text('Eliminar el estudio: ' + id);
       });
     }
   </script>
   
-@endsection      
+@endsection    
