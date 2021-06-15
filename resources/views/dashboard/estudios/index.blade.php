@@ -47,6 +47,7 @@
       
     </tbody>
   </table>
+  
   {{ $estudios->links() }}
   <div class="modal fade" id="deleteModal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

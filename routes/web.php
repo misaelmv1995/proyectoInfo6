@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\dashboard\EstudiosController;
 
 /*
@@ -21,5 +23,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('dashboard/estudios', EstudiosController::class);
 
+Route::resource('dashboard/estudios', EstudiosController::class);
+Route::get('audits', [App\Http\Controllers\AuditController::class, 'index'])->name('audits');

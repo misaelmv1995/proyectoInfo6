@@ -30,7 +30,7 @@ class StoreEstudiosPost extends FormRequest
             'fecha_entrega' =>' nullable | date',
             'fecha_proximo_estudio' => 'nullable | date',
             'fecha_revision_estudio' => 'nullable | date',
-            'resultado' => 'nullable | mimes:pdf,jpg,png',
+            'resultado' => 'nullable',
         ];
     }
 }
