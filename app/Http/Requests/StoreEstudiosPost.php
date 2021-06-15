@@ -25,12 +25,12 @@ class StoreEstudiosPost extends FormRequest
     {
         return [
             'tipo' => 'required | min:5 | max:500',
-            'fecha_estudio' => 'required | min:5 | max:400',
-            /**'asistencia'  
-            'fecha_entrega'
-            'fecha_proximo_estudio'
-            'fecha_revision_estudio'
-            'resultado' */
+            'fecha_estudio' => 'required | date',
+            'asistencia' => 'nullable | string',
+            'fecha_entrega' =>' nullable | date',
+            'fecha_proximo_estudio' => 'nullable | date',
+            'fecha_revision_estudio' => 'nullable | date',
+            'resultado' => 'nullable | mimes:pdf,jpg,png',
         ];
     }
 }

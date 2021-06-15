@@ -44,7 +44,7 @@ class EstudiosController extends Controller
      */
     public function store(StoreEstudiosPost $request)
     {
-        Estudio::create($request->validated());
+        Estudios::create($request->validated());
         return back()->with('status', 'Estudio creado correctamente');
     }
 
@@ -66,7 +66,7 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Estudios $estudio)
     {
         return view('dashboard.estudios.edit', ['estudio' => $estudio]);
     }
@@ -78,7 +78,7 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreEstudiosPost $request, Estudio $estudio)
+    public function update(StoreEstudiosPost $request, Estudios $estudio)
     {
         $estudio->update($request->validated());
         return back()->with('status', 'Estudios actualizado correctamente');
@@ -90,7 +90,7 @@ class EstudiosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudio $estudio)
+    public function destroy(Estudios $estudio)
     {
         $estudio->delete();
         return back()->with('status', 'Estudio borrado correctamente');

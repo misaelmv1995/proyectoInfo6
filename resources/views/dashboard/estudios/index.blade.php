@@ -8,17 +8,30 @@
     <thead>
       <tr>
         <th scope="col">Id</th>
-        <th scope="col">Title</th>
-        <th scope="col">Created</th>
-        <th scope="col">Updated</th>
-        <th scope="col">Actions</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Fecha Estudio</th>
+        <th scope="col">Asistio</th>
+        <th scope="col">Fecha Entrega</th>
+        <th scope="col">Fecha Próximo Estudio</th>
+        <th scope="col">Fecha Revisión Estudio</th>
+        <th scope="col">Resultado</th>
+        <th scope="col">Fecha Creación</th>
+        <th scope="col">Última modificación</th>
+        <th scope="col">Edición</th>
+        <th scope="col">Borrado</th>
       </tr>
     </thead>
     <tbody>
         @foreach ($estudios as $estudio)
             <tr>
                 <th scope="row">{{$estudio->id}}</th>
-                <td>{{$estudio->title}}</td>
+                <td>{{$estudio->tipo}}</td>
+                <td>{{$estudio->fecha_estudio}}</td>
+                <td>{{$estudio->asistio}}</td>
+                <td>{{$estudio->fecha_entrega}}</td>
+                <td>{{$estudio->fecha_proximo_estudio}}</td>
+                <td>{{$estudio->fecha_revision_estudio}}</td>
+                <td>{{$estudio->resultado}}</td>
                 <td>{{$estudio->created_at->format('d-m-y')}}</td>
                 <td>{{$estudio->updated_at}}</td>
                 <td>
@@ -31,10 +44,10 @@
                 </td>
             </tr>
         @endforeach
+      
     </tbody>
   </table>
   {{ $estudios->links() }}
-  
   <div class="modal fade" id="deleteModal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -49,7 +62,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form id="formDelete" action="{{route('estudios.destroy', 0)}}" method="POST">
+          <form id="formDelete" action="{{route('estudios.destroy', 0)}}" data-action="{{route('estudios.destroy', 0)}}" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" type="submit">Eliminar</button>
@@ -65,8 +78,10 @@
         var button = $(event.relatedTarget);
         var id = button.data('id');
 
-        action = $('#formDelete').attr('data-action');
+        action = $('#formDelete').attr('data-action').slice(0, -1);;
         action += id;
+
+        $('#formDelete').attr('action', action);
 
         var modal = $(this);
         modal.find('.modal-title').text('Eliminar el estudio: ' + id);
