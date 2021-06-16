@@ -26,3 +26,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('dashboard/estudios', EstudiosController::class);
 Route::get('audits', [App\Http\Controllers\AuditController::class, 'index'])->name('audits');
+Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');

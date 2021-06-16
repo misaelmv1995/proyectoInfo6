@@ -34,15 +34,11 @@
                 <input readonly type="date"  id="fecha_revision_estudio" name="fecha_revision_estudio" value="{{ $estudio->fecha_revision_estudio}}">
             </div>
             <div class="container">
-                <embed src="url{{$estudio->resultado}}" style="width:600px; height:800px;" frameborder="0">
-                {{      
-                    $file = "$estudio->resultado";
-                    header('Content-type: application/pdf');
-                    header('Content-Disposition: inline; filename="the.pdf"');
-                    header('Content-Transfer-Encoding: binary');
-                    header('Content-Length: ' . filesize($file));
-                    @readfile($file);
-                }}
+                <label for="resultado">Resultado:</label>
+                <br>
+                @if ($estudio->resultado)
+                    <embed src="{{asset($estudio->resultado)}}" style="width:800px; height:800px;" frameborder="0">    
+                @endif
             </div>
         </form>
 @endsection      

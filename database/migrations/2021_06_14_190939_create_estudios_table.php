@@ -13,9 +13,10 @@ class CreateEstudiosTable extends Migration
      */
     public function up()
     {
+
         Schema::create('estudios', function (Blueprint $table) {
-            $table->id();  
-            $table->string('tipo', 500);
+            $table->id();
+            $table->string('tipo', 500); 
             $table->date('fecha_estudio');
             $table->enum('asistio', ['yes', 'no'])->nullable()->default('no');
             $table->date('fecha_entrega')->nullable();
@@ -23,6 +24,8 @@ class CreateEstudiosTable extends Migration
             $table->date('fecha_revision_estudio')->nullable();
             $table->binary('resultado')->nullable();
             $table->timestamps();
+
+            
         });
     }
 

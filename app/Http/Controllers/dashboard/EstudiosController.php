@@ -44,7 +44,15 @@ class EstudiosController extends Controller
      */
     public function store(StoreEstudiosPost $request)
     {
-        Estudios::create($request->validated());
+        $validado = $request->validated();
+        if ($request->hasFile('resultado')) {
+            $file = $request->file('resultado');
+            $name = $request->resultado->getClientOriginalName();
+            $path = $request->resultado->storeAs('images', $name);
+            #$request['resultado'] = $request->file('resultado')->getRealPath();
+            $validado['resultado'] = $path; 
+        }
+        Estudios::create($validado);
         return back()->with('status', 'Estudio creado correctamente');
     }
 
@@ -79,8 +87,17 @@ class EstudiosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(StoreEstudiosPost $request, Estudios $estudio)
-    {
-        $estudio->update($request->validated());
+    {   
+
+        $validado = $request->validated();
+        if ($request->hasFile('resultado')) {
+            $file = $request->file('resultado');
+            $name = $request->resultado->getClientOriginalName();
+            $path = $request->resultado->storeAs('images', $name);
+            #$request['resultado'] = $request->file('resultado')->getRealPath();
+            $validado['resultado'] = $path; 
+        }
+        $estudio->update($validado);
         return back()->with('status', 'Estudios actualizado correctamente');
     }
 
